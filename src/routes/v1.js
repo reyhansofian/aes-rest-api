@@ -8,6 +8,10 @@ const routeV1 = (Messages) => {
   const v1 = new Router();
   const jwtKey = process.env.JWT_KEY;
 
+  v1.get('/', (req, res) => {
+    res.status(200).send('Hello world');
+  });
+
   v1.get('/generateToken', (req, res) => {
     const token = jwt.sign({
       user: 'Anonymous',

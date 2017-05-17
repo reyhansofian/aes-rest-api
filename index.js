@@ -10,6 +10,10 @@ app.use((err, req, res) => {
   res.status(500).send('Unable to process the request due to an internal error.');
 });
 
+app.get('/', (req, res) => {
+  res.status(200).send('Hello world');
+});
+
 http.createServer(app).listen(httpPort, () => {
   console.log(`HTTP server Started at port ${httpPort} at ${Date.now()}`);
 });
