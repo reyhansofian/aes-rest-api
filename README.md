@@ -17,7 +17,7 @@ Semua endpoint memiliki prefix `/v1`
 
 Endpoint ini berfungsi untuk generate JWT token.
 
-Endpoint: `GET /v1/generateToken`
+**Endpoint:** `GET /v1/generateToken`
 Result:
 ```json
 {
@@ -29,14 +29,15 @@ Result:
 
 Endpoint ini berfungsi untuk simulasi encrypted message. Ini berguna untuk testing.
 
-Endpoint: `POST /v1/encryptMessage`
-Headers:
+**Endpoint:** `POST /v1/encryptMessage`
+
+**Headers:**
 ```html
 x-access-token: TOKEN
 Content-Type: application/x-www-form-urlencoded
 ```
 
-Body:
+**Body:**
 ```html
 messages: YOUR_TEXT
 from: SENDER_ID
@@ -47,14 +48,15 @@ to: RECEIVER_ID
 
 Menambahkan message baru ke database. Data yang datang adalah data yg sudah terenkripsi.
 
-Endpoint: `POST /v1/addMessage`
-Headers:
+**Endpoint:** `POST /v1/addMessage`
+
+**Headers:**
 ```html
 x-access-token: TOKEN
 Content-Type: application/x-www-form-urlencoded
 ```
 
-Body:
+**Body:**
 ```html
 text: ENCRYPTED_MESSAGE
 ```
@@ -76,14 +78,15 @@ Result:
 ### Update Message
 Update message yang ada di database.
 
-Endpoint: `PUT /v1/updateMessage/:id`
-Headers:
+**Endpoint:** `PUT /v1/updateMessage/:id`
+
+**Headers:**
 ```html
 x-access-token: TOKEN
 Content-Type: application/x-www-form-urlencoded
 ```
 
-Body:
+**Body:**
 ```html
 text: NEW_ENCRYPTED_MESSAGE
 ```
@@ -91,8 +94,9 @@ text: NEW_ENCRYPTED_MESSAGE
 ### Delete Message
 Menghapus message yang ada di database.
 
-Endpoint: `DELETE /v1/deleteMessage/:id`
-Headers:
+**Endpoint:** `DELETE /v1/deleteMessage/:id`
+
+**Headers:**
 ```html
 x-access-token: TOKEN
 ```
@@ -100,8 +104,9 @@ x-access-token: TOKEN
 ### Get Messages by Sender Id
 Mengambil semua data messages berdasarkan sender id.
 
-Endpoint: `GET /v1/messageBySenderId/:id`
-Headers:
+**Endpoint:** `GET /v1/messageBySenderId/:id`
+
+**Headers:**
 ```html
 x-access-token: TOKEN
 ```
@@ -141,8 +146,9 @@ Result:
 ### Get Message by Message Id
 Mengambil data message berdasarkan message id.
 
-Endpoint: `GET /v1/messageById/:id`
-Headers:
+**Endpoint:** `GET /v1/messageById/:id`
+
+**Headers:**
 ```html
 x-access-token: TOKEN
 ```
@@ -164,8 +170,9 @@ Result:
 ### Get Messages by Receiver Id
 Mengambil data message berdasarkan receiver id.
 
-Endpoint: `GET /v1/messageById/:id`
-Headers:
+**Endpoint:** `GET /v1/messageById/:id`
+
+**Headers:**
 ```html
 x-access-token: TOKEN
 ```
