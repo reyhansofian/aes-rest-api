@@ -4,13 +4,17 @@ const ENCRYPTION_KEY = 'N1gPhk6WGR076nINVWIMVqZI7G0h1Z9h'; // Must be 256 bytes 
 const IV_LENGTH = 16; // For AES, this is always 16
 
 const encrypt = (text) => {
-  const iv = crypto.randomBytes(IV_LENGTH);
-  const cipher = crypto.createCipheriv('aes-256-cbc', new Buffer(ENCRYPTION_KEY), iv);
-  let encrypted = cipher.update(text);
+  try {
+    const iv = crypto.randomBytes(IV_LENGTH);
+    const cipher = crypto.createCipheriv('aes-256-cbc', new Buffer(ENCRYPTION_KEY), iv);
+    let encrypted = cipher.update(text);
 
-  encrypted = Buffer.concat([encrypted, cipher.final()]);
+    encrypted = Buffer.concat([encrypted, cipher.final()]);
 
-  return `${iv.toString('hex')}:${encrypted.toString('hex')}`;
+    return `${iv.toString('hex')}:${encrypted.toString('hex')}`;
+  } catch (error) {
+    throw error;
+  }
 };
 
 const decrypt = (text) => {
