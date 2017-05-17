@@ -1,0 +1,220 @@
+{
+	"variables": [],
+	"info": {
+		"name": "AES REST API",
+		"_postman_id": "c02511e8-d5df-dfe2-153e-0c0f2753bef0",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Encrypt Message",
+			"request": {
+				"url": "https://enc-aes-nodejs.herokuapp.com/v1/encryptMessage",
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiQW5vbnltb3VzIiwiaXNzIjoiQUVTLVRFU1QiLCJpYXQiOjE0OTUwMzQ3MTEsImV4cCI6MTQ5NTYzOTUxMX0.jnqHFicHKYdowS2bIZgrwXSz5x5T1MqMudkGqx0MJ-8",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "messages",
+							"value": "SOME TEXT",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "from",
+							"value": "SENDER_ID",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "to",
+							"value": "RECEIVER_ID",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Simulasi request body yang sudah terenkripsi dengan AES-256-CBC"
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Token",
+			"request": {
+				"url": "https://enc-aes-nodejs.herokuapp.com/v1/generateToken",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Generate JWT token"
+			},
+			"response": []
+		},
+		{
+			"name": "Add New Message",
+			"request": {
+				"url": "https://enc-aes-nodejs.herokuapp.com/v1/addMessage",
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiQW5vbnltb3VzIiwiaXNzIjoiQUVTLVRFU1QiLCJpYXQiOjE0OTUwMzQ3MTEsImV4cCI6MTQ5NTYzOTUxMX0.jnqHFicHKYdowS2bIZgrwXSz5x5T1MqMudkGqx0MJ-8",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "text",
+							"value": "a0cb801fba36b8dcedcbb1383b0525d2:18d8add64a746a551f46362092a690e3eec94dbf094bd1769a3ce4234080ef60a53b0d919cbc11277db74fe05310f68e216d99bd9f11fcc63df3abf8bc344d1b",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Menambahkan message baru ke database. Data yang datang adalah data yg sudah terenkripsi."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Messages by Sender Id",
+			"request": {
+				"url": "https://enc-aes-nodejs.herokuapp.com/v1/messageBySenderId/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiQW5vbnltb3VzIiwiaXNzIjoiQUVTLVRFU1QiLCJpYXQiOjE0OTUwMzQ3MTEsImV4cCI6MTQ5NTYzOTUxMX0.jnqHFicHKYdowS2bIZgrwXSz5x5T1MqMudkGqx0MJ-8",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Mengambil semua data messages berdasarkan sender id."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Message by Message Id",
+			"request": {
+				"url": "https://enc-aes-nodejs.herokuapp.com/v1/messageById/8",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiQW5vbnltb3VzIiwiaXNzIjoiQUVTLVRFU1QiLCJpYXQiOjE0OTUwMzQ3MTEsImV4cCI6MTQ5NTYzOTUxMX0.jnqHFicHKYdowS2bIZgrwXSz5x5T1MqMudkGqx0MJ-8",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Mengambil data message berdasarkan message id."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Messages by Receiver Id",
+			"request": {
+				"url": "https://enc-aes-nodejs.herokuapp.com/v1/messageByReceiverId/2",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiQW5vbnltb3VzIiwiaXNzIjoiQUVTLVRFU1QiLCJpYXQiOjE0OTUwMzQ3MTEsImV4cCI6MTQ5NTYzOTUxMX0.jnqHFicHKYdowS2bIZgrwXSz5x5T1MqMudkGqx0MJ-8",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Mengambil data message berdasarkan receiver id."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Message",
+			"request": {
+				"url": "https://enc-aes-nodejs.herokuapp.com/v1/updateMessage/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiQW5vbnltb3VzIiwiaXNzIjoiQUVTLVRFU1QiLCJpYXQiOjE0OTUwMzQ3MTEsImV4cCI6MTQ5NTYzOTUxMX0.jnqHFicHKYdowS2bIZgrwXSz5x5T1MqMudkGqx0MJ-8",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "text",
+							"value": "6b063543cc5f87a88ae27d34a69a99c5:9d082df0f0d930fec80732b0a3eacad2abb9909abf6729b37f05adcf4e33aa290c937ab7e2070c3c16420149fd0c60be0156f1db589c5b97850beeb2542da60e",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Update message"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Message",
+			"request": {
+				"url": "https://enc-aes-nodejs.herokuapp.com/v1/deleteMessage/3",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiQW5vbnltb3VzIiwiaXNzIjoiQUVTLVRFU1QiLCJpYXQiOjE0OTUwMzQ3MTEsImV4cCI6MTQ5NTYzOTUxMX0.jnqHFicHKYdowS2bIZgrwXSz5x5T1MqMudkGqx0MJ-8",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "messages",
+							"value": "HOHOHOHO",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "from",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "to",
+							"value": "2",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Hapus message"
+			},
+			"response": []
+		}
+	]
+}
