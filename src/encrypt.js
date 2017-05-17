@@ -14,18 +14,22 @@ const encrypt = (text) => {
 };
 
 const decrypt = (text) => {
-  const textParts = text.split(':');
-  const iv = new Buffer(textParts.shift(), 'hex');
-  const encryptedText = new Buffer(textParts.join(':'), 'hex');
-  const decipher = crypto.createDecipheriv('aes-256-cbc', new Buffer(ENCRYPTION_KEY), iv);
-  let decrypted = decipher.update(encryptedText);
+  try {
+    const textParts = text.split(':');
+    const iv = new Buffer(textParts.shift(), 'hex');
+    const encryptedText = new Buffer(textParts.join(':'), 'hex');
+    const decipher = crypto.createDecipheriv('aes-256-cbc', new Buffer(ENCRYPTION_KEY), iv);
+    let decrypted = decipher.update(encryptedText);
 
-  decrypted = Buffer.concat([decrypted, decipher.final()]);
+    decrypted = Buffer.concat([decrypted, decipher.final()]);
 
-  return decrypted.toString();
+    return decrypted.toString();
+  } catch (error) {
+    throw error;
+  }
 };
 
 module.exports = {
-  decrypt,
   encrypt,
+  decrypt,
 };
