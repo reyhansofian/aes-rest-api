@@ -3,7 +3,7 @@ const http = require('http');
 const { createApp } = require('./src');
 
 const app = createApp();
-const httpPort = 8008;
+const httpPort = 5000;
 
 app.use((err, req, res) => {
   console.error(err.message);
