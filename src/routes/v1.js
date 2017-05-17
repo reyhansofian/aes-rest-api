@@ -112,6 +112,37 @@ const routeV1 = (Messages) => {
     }
   });
 
+  v1.put('/updateMessage/:id', verifyToken, (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const decryptedText = decrypt(req.body.text);
+      const parseText = JSON.parse(decryptedText);
+
+      Messages
+        .update({
+          messages: parseText.messages,
+          from: parseText.from,
+          to: parseText.to,
+        }, {
+          where: {
+            id,
+          },
+        })
+        .then(updatedMessage => {
+          console.log(updatedMessage);
+          res.sendStatus(200);
+        })
+        .catch(err => {
+          console.error(err);
+          res.status(500).send({ error: err.message });
+        });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send({ error: err.message });
+    }
+  });
+
   v1.delete('/deleteMessage/:id', verifyToken, (req, res) => {
     const { id } = req.params;
 
