@@ -19,21 +19,6 @@ const routeV1 = (Messages) => {
     res.status(200).json({ token });
   });
 
-  v1.post('/test', verifyToken, (req, res) => {
-    const { messages, from, to } = req.body;
-
-    const msg = Messages.build({ messages, from, to });
-
-    msg.save().then(savedMessage => {
-      console.log(savedMessage);
-      res.status(200).send(savedMessage);
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).send(err);
-    });
-  });
-
   v1.get('/messageById/:id', verifyToken, (req, res) => {
     const { id } = req.params;
 
