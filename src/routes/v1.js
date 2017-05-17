@@ -30,7 +30,7 @@ const routeV1 = (Messages) => {
       })
       .then(message => {
         console.log(message);
-        res.status(200).send(message);
+        res.status(200).send({ data: message });
       })
       .catch(err => {
         console.error(err);
@@ -49,7 +49,7 @@ const routeV1 = (Messages) => {
       })
       .then(message => {
         console.log(message);
-        res.status(200).send(message);
+        res.status(200).send({ data: message });
       })
       .catch(err => {
         console.error(err);
@@ -68,7 +68,7 @@ const routeV1 = (Messages) => {
       })
       .then(message => {
         console.log(message);
-        res.status(200).send(message);
+        res.status(200).send({ data: message });
       })
       .catch(err => {
         console.error(err);
@@ -80,7 +80,7 @@ const routeV1 = (Messages) => {
     try {
       const encryptedText = encrypt(JSON.stringify(req.body));
 
-      res.status(200).json(encryptedText);
+      res.status(200).json({ data: encryptedText });
     } catch (err) {
       console.log(err);
       res.status(500).send({ error: err.message });
@@ -100,7 +100,7 @@ const routeV1 = (Messages) => {
 
       msg.save().then(savedMessage => {
         console.log(savedMessage);
-        res.status(200).send(savedMessage);
+        res.status(200).send({ data: savedMessage });
       })
       .catch(err => {
         console.error(err);
