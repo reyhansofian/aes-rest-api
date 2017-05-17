@@ -37,55 +37,58 @@ const routeV1 = (Messages) => {
   v1.get('/messageById/:id', verifyToken, (req, res) => {
     const { id } = req.params;
 
-    Messages.findOne({
-      where: {
-        id,
-      },
-    })
-    .then(message => {
-      console.log(message);
-      res.status(200).send(message);
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).send({ error: err.message });
-    });
+    Messages
+      .findOne({
+        where: {
+          id,
+        },
+      })
+      .then(message => {
+        console.log(message);
+        res.status(200).send(message);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send({ error: err.message });
+      });
   });
 
   v1.get('/messageBySenderId/:id', verifyToken, (req, res) => {
     const { id } = req.params;
 
-    Messages.findAll({
-      where: {
-        from: id,
-      },
-    })
-    .then(message => {
-      console.log(message);
-      res.status(200).send(message);
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).send({ error: err.message });
-    });
+    Messages
+      .findAll({
+        where: {
+          from: id,
+        },
+      })
+      .then(message => {
+        console.log(message);
+        res.status(200).send(message);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send({ error: err.message });
+      });
   });
 
   v1.get('/messageByReceiverId/:id', verifyToken, (req, res) => {
     const { id } = req.params;
 
-    Messages.findAll({
-      where: {
-        to: id,
-      },
-    })
-    .then(message => {
-      console.log(message);
-      res.status(200).send(message);
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).send({ error: err.message });
-    });
+    Messages
+      .findAll({
+        where: {
+          to: id,
+        },
+      })
+      .then(message => {
+        console.log(message);
+        res.status(200).send(message);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send({ error: err.message });
+      });
   });
 
   v1.post('/encryptMessage', verifyToken, (req, res) => {
@@ -122,6 +125,25 @@ const routeV1 = (Messages) => {
       console.error(err);
       res.status(500).send({ error: err.message });
     }
+  });
+
+  v1.delete('/deleteMessage/:id', verifyToken, (req, res) => {
+    const { id } = req.params;
+
+    Messages
+      .destroy({
+        where: {
+          id,
+        },
+      })
+      .then(data => {
+        console.log('Affected row', data);
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send({ error: err.message });
+      });
   });
 
   return v1;
