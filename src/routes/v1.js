@@ -34,10 +34,58 @@ const routeV1 = (Messages) => {
     });
   });
 
-  v1.get('/t', (req, res) => {
-    const encryptedText = encrypt('{"messages":"cuma test","from":1,"to":2}');
+  v1.get('/messageById/:id', verifyToken, (req, res) => {
+    const { id } = req.params;
 
-    res.status(200).send(encryptedText);
+    Messages.findOne({
+      where: {
+        id,
+      },
+    })
+    .then(message => {
+      console.log(message);
+      res.status(200).send(message);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send({ error: err.message });
+    });
+  });
+
+  v1.get('/messageBySenderId/:id', verifyToken, (req, res) => {
+    const { id } = req.params;
+
+    Messages.findAll({
+      where: {
+        from: id,
+      },
+    })
+    .then(message => {
+      console.log(message);
+      res.status(200).send(message);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send({ error: err.message });
+    });
+  });
+
+  v1.get('/messageByReceiverId/:id', verifyToken, (req, res) => {
+    const { id } = req.params;
+
+    Messages.findAll({
+      where: {
+        to: id,
+      },
+    })
+    .then(message => {
+      console.log(message);
+      res.status(200).send(message);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send({ error: err.message });
+    });
   });
 
   v1.post('/encryptMessage', verifyToken, (req, res) => {
